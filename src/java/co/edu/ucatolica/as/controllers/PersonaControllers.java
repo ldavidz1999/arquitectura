@@ -73,6 +73,7 @@ public class PersonaControllers implements Controller {
         p.setEmail(email);                                    
             
         //boolean insert = pDao.crearPersona(p, MySqlDataSource.getConexionBD());
+        System.out.print("Objeto"+p);
         boolean insert = MySqlFactory.getPersonaDao().crearPersona(p, MySqlDataSource.getConexionBD());
 
         Logger.getLogger(PersonaControllers.class.getName()).log(Level.SEVERE, null, "Registrar + " + ident + "-" + insert);

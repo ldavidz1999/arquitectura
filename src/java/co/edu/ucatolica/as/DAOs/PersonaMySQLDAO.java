@@ -23,6 +23,7 @@ public class PersonaMySQLDAO implements PersonaDAO{
     
     
     
+    @Override
     public boolean crearPersona(Persona p, Connection con)
     {
         PreparedStatement pstmt = null;
@@ -31,9 +32,9 @@ public class PersonaMySQLDAO implements PersonaDAO{
             
             Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Ejecutando crearPersona...");
             
-            pstmt = con.prepareStatement("INSERT INTO persona (identificacion, nombre_1,nombre_2, "
-                    + " apellido_1, apellido_2, genero, telefono, email, "
-                    + " fecha_nacimiento, tipo_persona) "
+            pstmt = con.prepareStatement("INSERT INTO persona (identificacion, nombre_1, nombre_2, "
+                    + " apellido_1, apellido_2, genero, tipo_persona, fecha_nacimiento, telefono, email"
+                    + " ) "
                     + " VALUES (?,?,?,?,?,?,?,?,?,?)");
             
             //pstmt.setInt(1,p.getId());
@@ -43,10 +44,12 @@ public class PersonaMySQLDAO implements PersonaDAO{
             pstmt.setString(4, p.getApellido1());
             pstmt.setString(5, p.getApellido2());
             pstmt.setString(6, p.getGenero());
-            pstmt.setString(7, p.getTelef());
-            pstmt.setString(8, p.getEmail());
-            pstmt.setString(9, p.getfNacimiento());
-            pstmt.setString(10, p.getTipoP());
+            pstmt.setString(7, p.getTipoP());
+            pstmt.setString(8, p.getfNacimiento());
+            pstmt.setString(9, p.getTelef());
+            pstmt.setString(10, p.getEmail());
+            
+            
             
             pstmt.execute();
             
@@ -61,6 +64,7 @@ public class PersonaMySQLDAO implements PersonaDAO{
 
     }
 
+    @Override
     public ArrayList<Persona> consultarPersona(Persona p, Connection con)
     {
         
