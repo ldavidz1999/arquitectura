@@ -74,13 +74,13 @@ public class PersonaMySQLDAO implements PersonaDAO{
         
         try {
             Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery ("select identificacion, nombre_1,nombre_2, "
-                    + " apellido_1, apellido_2, genero, telefono, email, "
-                    + " fecha_nacimiento, tipo_persona, id_persona "
-                    + " from persona "
-                    + " where "
-                    + " identificacion='" + p.getIdentificacion()+"'"
-                    + " AND nombre_1='"+p.getNombre1()+"'");
+            ResultSet rs = s.executeQuery ("SELECT identificacion, nombre_1,nombre_2, "
+                    + " apellido_1, apellido_2, genero, tipo_persona, fecha_nacimiento, telefono, email "
+                    //+ " id_persona "
+                    + " FROM persona "
+                    + " WHERE "
+                    + " identificacion = " + p.getIdentificacion());
+//                    + " AND nombre_1='"+p.getNombre1()+"'");
             
             while (rs.next())
             { 
@@ -91,11 +91,13 @@ public class PersonaMySQLDAO implements PersonaDAO{
                 per.setApellido1(rs.getString(4));
                 per.setApellido2(rs.getString(5));
                 per.setGenero(rs.getString(6));
-                per.setTelef(rs.getString(7));
-                per.setEmail(rs.getString(8));
-                per.setfNacimiento(rs.getString(9));
-                per.setTipoP(rs.getString(10));
-                per.setId(rs.getInt(11));
+                per.setTipoP(rs.getString(7));
+                per.setfNacimiento(rs.getString(8));
+                per.setTelef(rs.getString(9));
+                per.setEmail(rs.getString(10));
+                
+                
+                //per.setId(rs.getInt(11));
                 
                 datos.add(per);
                 
@@ -124,12 +126,26 @@ public class PersonaMySQLDAO implements PersonaDAO{
                     + " identificacion=?"
                     + " , nombre_1=?"
                     + " , nombre_2=?"
-                    + " where id_persona=?");
+                    + " , apellido_1=?"
+                    + " , apellido_2=?"
+                    + " , genero=?"
+                    + " , tipo_persona=?"
+                    + " , fecha_nacimiento=?"
+                    + " , telefono=?"
+                    + " , email=?"
+                    + " WHERE identificacion =" + p.getIdentificacion());
                         
             pstmt.setString(1, p.getIdentificacion());
             pstmt.setString(2, p.getNombre1());
             pstmt.setString(3, p.getNombre2());
-            pstmt.setInt(4, p.getId());
+            pstmt.setString(4, p.getApellido1());
+            pstmt.setString(5, p.getApellido2());
+            pstmt.setString(6, p.getGenero());
+            pstmt.setString(7, p.getTipoP());
+            pstmt.setString(8, p.getfNacimiento());
+            pstmt.setString(9, p.getTelef());
+            pstmt.setString(10, p.getEmail());
+            //pstmt.setInt(4, p.getId());
             
             pstmt.executeUpdate();
             
@@ -142,5 +158,28 @@ public class PersonaMySQLDAO implements PersonaDAO{
         
         return respuesta;
 
+    }
+    
+    public boolean eliminarPersona(Persona p, Connection con)
+    {
+        PreparedStatement pstmt = null;
+        boolean respuesta = false;
+        Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Ejecutando eliminarPersona...");
+        try {
+            
+            pstmt = con.prepareStatement("DELETE FROM persona "                    
+                    + " WHERE "
+                    + " identificacion = " + p.getIdentificacion());
+            
+            pstmt.executeUpdate();
+        
+            Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Ejecutando eliminarPersona fin...");
+            
+            con.close();
+            respuesta = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
     }
 }

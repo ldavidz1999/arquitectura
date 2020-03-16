@@ -103,18 +103,19 @@ public class PersonaControllers implements Controller {
 
         //int id = pDao.obtenerId(MySqlDataSource.getConexionBD());
         String ident = req.getParameter("identificacion");
-        String nombre1 = req.getParameter("nombre1");
+        //String nombre1 = req.getParameter("nombre1");
         
         Persona p = new Persona();
         //p.setId(id);
         p.setIdentificacion(ident);
-        p.setNombre1(nombre1);
+        //p.setNombre1(nombre1);
             
         List<Persona> datos = pDao.consultarPersona(p, MySqlDataSource.getConexionBD());
 
         Logger.getLogger(PersonaControllers.class.getName()).log(Level.SEVERE, null, "Consultar + " + ident + "-" + datos.size());
         
         model.put("listaPersonas", datos);
+        System.out.print("T datos:"+datos.size());
         if (datos.size() > 0)
             model.put("mensaje", "La consulta se realizo satisfactoriamente!!!" + datos.size());
         else
@@ -122,7 +123,7 @@ public class PersonaControllers implements Controller {
         
         return "persona_consultar";
     }     
-    
+   
 @RequestMapping(method = RequestMethod.GET, value = "personaEditar.htm")
     public String processSubmit4(HttpServletRequest req, SessionStatus status,ModelMap model) 
     {      
@@ -166,7 +167,7 @@ public class PersonaControllers implements Controller {
             
         Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Ejecutando processSubmit6...");
 
-        int id = Integer.parseInt(req.getParameter("id"));
+        //int id = Integer.parseInt(req.getParameter("id"));
         String ident = req.getParameter("identificacion");
         String nombre1 = req.getParameter("nombre1");
         String nombre2 = req.getParameter("nombre2");
@@ -178,10 +179,10 @@ public class PersonaControllers implements Controller {
         String telef = req.getParameter("telefono");
         String email = req.getParameter("email");
         
-        Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Id persona: " + id);
+        Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Id persona: " + ident);
         
         Persona p = new Persona();
-        p.setId(id);
+        //p.setId(id);
         p.setIdentificacion(ident);
         p.setNombre1(nombre1);
         p.setNombre2(nombre2);
@@ -202,7 +203,48 @@ public class PersonaControllers implements Controller {
         
         return "persona_editar";
         
-    }    
+    }  
+
+@RequestMapping(method = RequestMethod.GET, value = "personaEliminar.htm")
+    public String processSubmit7(HttpServletRequest req, SessionStatus status,ModelMap model) 
+    {      
+        Logger.getLogger(PersonaControllers.class.getName()).log(Level.INFO, "Ejecutando processSubmit7...");
+        return "persona_eliminar";
+    } 
+    
+@RequestMapping(method = RequestMethod.POST, value = "personaEliminarForm.htm")
+    public String processSubmit8(HttpServletRequest req, SessionStatus status,ModelMap model) 
+    {
+
+        PersonaMySQLDAO pDao = new PersonaMySQLDAO();
+            
+        Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Ejecutando processSubmit8...");
+
+        //int id = pDao.obtenerId(MySqlDataSource.getConexionBD());
+        String ident = req.getParameter("identificacion");
+        //String nombre1 = req.getParameter("nombre1");
+        
+        Persona p = new Persona();
+        //p.setId(id);
+        p.setIdentificacion(ident);
+        //p.setNombre1(nombre1);
+            
+        //List<Persona> datos = pDao.consultarPersona(p, MySqlDataSource.getConexionBD());
+
+        //Logger.getLogger(PersonaControllers.class.getName()).log(Level.SEVERE, null, "Eliminar + " + ident);
+        Logger.getLogger(PersonaMySQLDAO.class.getName()).log(Level.INFO, "Id persona: " + ident);
+        
+        //model.put("listaPersonas", datos);
+        
+        boolean res = pDao.eliminarPersona(p, MySqlDataSource.getConexionBD());  
+        
+        if (res)
+            model.put("mensaje", "¡Eliminado satisfactoriamente!");
+        else
+            model.put("mensaje", "No se pudo eliminar");
+        
+        return "persona_eliminar";
+    }  
 
     @Override
     public String value() {

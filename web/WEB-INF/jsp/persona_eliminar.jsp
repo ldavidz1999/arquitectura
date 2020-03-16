@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <!--A Design by W3layouts
 Author: W3layout
@@ -8,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Editar</title>
+<title>Hosting City a Hosting Category Flat Bootstrap responsive Website Template | Registration :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Hosting City Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -105,46 +107,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //header -->
 	<!-- about-heading -->
 	<div class="about-heading">
-		<h2>Editar <span>Persona</span></h2>
+		<h2>Eliminar <span>Persona</span></h2>
 	</div>
 	<!-- //about-heading -->
 	<div class="registration">
 		<div class="container">
-                        <div class="signin-form profile">
-				<h3>:: Consultar ::</h3>
-				
-				<div class="login-form">
-					<form action="personaEditarForm1.htm" method="post">
-                                            <input type="text" name="identificacion" placeholder="Identificación" required>
-                                            <input type="text" name="nombre1" placeholder="Nombre 1" required>
-
-                                            <input type="submit" value="CONSULTAR">
-					</form>
-				</div>				
-			</div>                    
 			<div class="signin-form profile">
-				<h3>:: Editar ::</h3>
+				<h3>:: Eliminar ::</h3>
 				
 				<div class="login-form">
-					<form action="personaEditarForm2.htm" method="post">
-                                            <input type="text" name="identificacion" value="${listaPersonas.get(0).getIdentificacion()}" >
-                                            <input type="text" name="nombre1" value="${listaPersonas.get(0).getNombre1()}" >
-                                            <input type="text" name="nombre2" value="${listaPersonas.get(0).getNombre2()}" >
-                                            <input type="text" name="apellido1" value="${listaPersonas.get(0).getApellido1()}" >
-                                            <input type="text" name="apellido2" value="${listaPersonas.get(0).getApellido2()}" >
-                                            <input type="text" name="genero" value="${listaPersonas.get(0).getGenero()}" >
-                                            <input type="text" name="tipop" value="${listaPersonas.get(0).getTipoP()}" >
-                                            <input type="date" name="fecha" value="${listaPersonas.get(0).getfNacimiento()}" >
-                                            <input type="text" name="telefono" value="${listaPersonas.get(0).getTelef()}" >
-                                            <input type="email" name="email" value="${listaPersonas.get(0).getEmail()}" >
+					<form action="personaEliminarForm.htm" method="post">
+                                            <input type="text" name="identificacion" placeholder="Identificación" required>
+                                            <!--<input type="text" name="nombre1" placeholder="Nombre 1" required>-->
 
-                                            <input type="hidden" name="id" value="${listaPersonas.get(0).getId()}">
-                                            
-                                            <input type="submit" value="EDITAR">
+                                            <input type="submit" value="Eliminar">
 					</form>
 				</div>
 				<p>${mensaje}</p>
-			</div>
+			</div>                        
 		</div>
 	</div>
 	<!-- footer -->

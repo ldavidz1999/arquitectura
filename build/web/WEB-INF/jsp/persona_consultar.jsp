@@ -92,6 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<li><a class="hvr-sweep-to-bottom" href="personaCrear.htm">Crear</a></li>
 										<li><a class="hvr-sweep-to-bottom" href="personaConsultar.htm">Consultar</a></li>
 										<li><a class="hvr-sweep-to-bottom" href="personaEditar.htm">Editar</a></li>
+                                                                                <li><a class="hvr-sweep-to-bottom" href="personaEliminar.htm">Eliminar</a></li>
 									</ul>
 								</li>
 								<li><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
@@ -117,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="login-form">
 					<form action="personaConsultarForm.htm" method="post">
                                             <input type="text" name="identificacion" placeholder="Identificación" required>
-                                            <input type="text" name="nombre1" placeholder="Nombre 1" required>
+                                            <!--<input type="text" name="nombre1" placeholder="Nombre 1" required>-->
 
                                             <input type="submit" value="CONSULTAR">
 					</form>
@@ -134,10 +135,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                        <th>Apellido 1</th>
                                        <th>Apellido 2</th>
                                        <th>Genero</th>
-                                       <th>Telefono</th>
-                                       <th>E-mail</th>
-                                       <th>Fecha Nacimiento</th>
                                        <th>Tipo Persona</th>
+                                       <th>Fecha Nacimiento</th>
+                                       <th>Telefono</th>
+                                       <th>E-mail</th>                                                                             
                                     </tr>
                                 </thead>                                        
                                 <tbody>
